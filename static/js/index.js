@@ -1,24 +1,70 @@
 window.HELP_IMPROVE_VIDEOJS = false;
 
-var INTERP_BASE = "./static/interpolation/stacked";
-var NUM_INTERP_FRAMES = 240;
+// Object to store preloaded images for each folder
+const preloadedImages = {};
 
-var interp_images = [];
 function preloadInterpolationImages() {
-  for (var i = 0; i < NUM_INTERP_FRAMES; i++) {
-    var path = INTERP_BASE + '/' + String(i).padStart(6, '0') + '.jpg';
-    interp_images[i] = new Image();
-    interp_images[i].src = path;
-  }
+  $('.interpolation-container').each(function() {
+    const folder = this.dataset.folder;
+    const frames = parseInt(this.dataset.frames);
+    preloadedImages[folder] = [];
+
+    for (let i = 0; i < frames; i++) {
+      const path = `./static/interpolation/${folder}/${String(i).padStart(6, '0')}.jpg`;
+      const img = new Image();
+      img.src = path;
+      preloadedImages[folder][i] = img;
+    }
+  });
 }
 
-function setInterpolationImage(i) {
-  var image = interp_images[i];
-  image.ondragstart = function() { return false; };
-  image.oncontextmenu = function() { return false; };
-  $('#interpolation-image-wrapper').empty().append(image);
-}
 
+function createInterpolationSlider(container) {
+  const folder = container.dataset.folder;
+  const frames = parseInt(container.dataset.frames);
+  const sliderId = `interpolation-slider-${folder}`;
+  const imageWrapperId = `interpolation-image-wrapper-${folder}`;
+
+  const sliderHtml = `
+    <div class="columns is-vcentered interpolation-panel">
+      <div class="column is-3 has-text-centered">
+        <img src="./static/interpolation/${folder}/000000.jpg"
+             class="interpolation-image"
+             alt="Start Frame"/>
+        <p>Start Frame</p>
+      </div>
+      <div class="column interpolation-video-column">
+        <div id="${imageWrapperId}">
+          Loading...
+        </div>
+        <input class="slider is-fullwidth is-large is-info"
+               id="${sliderId}"
+               step="1" min="0" max="${frames - 1}" value="0" type="range">
+      </div>
+      <div class="column is-3 has-text-centered">
+        <img src="./static/interpolation/${folder}/${String(frames - 1).padStart(6, '0')}.jpg"
+             class="interpolation-image"
+             alt="End Frame"/>
+        <p class="is-bold">End Frame</p>
+      </div>
+    </div>
+  `;
+
+  container.insertAdjacentHTML('beforeend', sliderHtml);
+
+  $(`#${sliderId}`).on('input', function(event) {
+    const image = preloadedImages[folder][this.value];
+    image.ondragstart = () => false;
+    image.oncontextmenu = () => false;
+    $(`#${imageWrapperId}`).empty().append(image);
+  });
+
+  // Set initial image
+  const initialImage = preloadedImages[folder][0];
+  initialImage.ondragstart = () => false;
+  initialImage.oncontextmenu = () => false;
+  $(`#${imageWrapperId}`).empty().append(initialImage);
+}
 
 $(document).ready(function() {
     // Check for click events on the navbar burger icon
@@ -26,6 +72,9 @@ $(document).ready(function() {
       // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
       $(".navbar-burger").toggleClass("is-active");
       $(".navbar-menu").toggleClass("is-active");
+      $('.interpolation-container').each(function() {
+        createInterpolationSlider(this);
+      });
 
     });
 
@@ -67,12 +116,10 @@ $(document).ready(function() {
     }, false);*/
     preloadInterpolationImages();
 
-    $('#interpolation-slider').on('input', function(event) {
-      setInterpolationImage(this.value);
+    // Create sliders for each interpolation-container
+    $('.interpolation-container').each(function() {
+      createInterpolationSlider(this);
     });
-    setInterpolationImage(0);
-    $('#interpolation-slider').prop('max', NUM_INTERP_FRAMES - 1);
 
-    bulmaSlider.attach();
-
+    bulmaSlider.attach('.interpolation-container input[type="range"]');
 })

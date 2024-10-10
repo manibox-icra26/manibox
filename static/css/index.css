@@ -127,6 +127,9 @@ body {
   margin: 0;
 }
 
+.interpolation-container {
+  margin-bottom: 40px;
+}
 
 .interpolation-panel {
   background: #f5f5f5;
@@ -145,13 +148,7 @@ body {
   margin: 0 !important;
 }
 
-.interpolation-panel .slider {
-  margin: 0 !important;
-}
-
-#interpolation-image-wrapper {
+.interpolation-panel .interpolation-video-column img {
   width: 100%;
-}
-#interpolation-image-wrapper img {
   border-radius: 5px;
 }
