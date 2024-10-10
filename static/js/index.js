@@ -2,22 +2,29 @@ window.HELP_IMPROVE_VIDEOJS = false;
 
 // Object to store preloaded images for each folder
 const preloadedImages = {};
+let totalImagesToLoad = 0;
+let loadedImages = 0;
 
-function preloadInterpolationImages() {
+function preloadInterpolationImages(callback) {
   $('.interpolation-container').each(function() {
     const folder = this.dataset.folder;
     const frames = parseInt(this.dataset.frames);
     preloadedImages[folder] = [];
+    totalImagesToLoad += frames;
 
     for (let i = 0; i < frames; i++) {
-      const path = `./static/interpolation/${folder}/${String(i).padStart(6, '0')}.jpg`;
       const img = new Image();
-      img.src = path;
+      img.onload = function() {
+        loadedImages++;
+        if (loadedImages === totalImagesToLoad) {
+          callback();
+        }
+      };
+      img.src = `./static/interpolation/${folder}/${String(i).padStart(6, '0')}.jpg`;
       preloadedImages[folder][i] = img;
     }
   });
 }
-
 
 function createInterpolationSlider(container) {
   const folder = container.dataset.folder;
@@ -35,7 +42,7 @@ function createInterpolationSlider(container) {
       </div>
       <div class="column interpolation-video-column">
         <div id="${imageWrapperId}">
-          Loading...
+          <div class="loading">Loading...</div>
         </div>
         <input class="slider is-fullwidth is-large is-info"
                id="${sliderId}"
@@ -54,16 +61,17 @@ function createInterpolationSlider(container) {
 
   $(`#${sliderId}`).on('input', function(event) {
     const image = preloadedImages[folder][this.value];
-    image.ondragstart = () => false;
-    image.oncontextmenu = () => false;
-    $(`#${imageWrapperId}`).empty().append(image);
+    setInterpolationImage(imageWrapperId, image);
   });
 
   // Set initial image
-  const initialImage = preloadedImages[folder][0];
-  initialImage.ondragstart = () => false;
-  initialImage.oncontextmenu = () => false;
-  $(`#${imageWrapperId}`).empty().append(initialImage);
+  setInterpolationImage(imageWrapperId, preloadedImages[folder][0]);
+}
+
+function setInterpolationImage(imageWrapperId, image) {
+  image.ondragstart = () => false;
+  image.oncontextmenu = () => false;
+  $(`#${imageWrapperId}`).empty().append(image);
 }
 
 $(document).ready(function() {
@@ -114,12 +122,24 @@ $(document).ready(function() {
         player.currentTime = player.duration / 100 * this.value;
       })
     }, false);*/
-    preloadInterpolationImages();
+    preloadInterpolationImages(function() {
+      // Remove loading indicator
+      $('#global-loading').remove();
 
-    // Create sliders for each interpolation-container
-    $('.interpolation-container').each(function() {
-      createInterpolationSlider(this);
+      // Create sliders for each interpolation-container
+      $('.interpolation-container').each(function() {
+        createInterpolationSlider(this);
+      });
+
+      // Enable sliders
+      $('.interpolation-container input[type="range"]').prop('disabled', false);
     });
+
+    // Disable sliders until images are loaded
+    $('.interpolation-container input[type="range"]').prop('disabled', true);
+
+    // Show loading indicator
+    $('body').append('<div id="global-loading" class="loading">Loading images...</div>');
 
     bulmaSlider.attach('.interpolation-container input[type="range"]');
 })
