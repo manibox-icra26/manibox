@@ -25,20 +25,29 @@
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
         rel="stylesheet">
 
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <!-- <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css"> -->
+  <!-- Bulma CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+
+  <!-- Bulma Carousel CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel/dist/css/bulma-carousel.min.css">
+
+  <!-- Bulma Slider CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-slider@2.0.5/dist/css/bulma-slider.min.css">
+
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
   <link rel="icon" href="./static/images/favicon.svg">
-
+  
+  <script src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/js/bulma-carousel.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bulma-slider@2.0.5/dist/js/bulma-slider.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+  <!-- <script src="./static/js/bulma-carousel.min.js"></script> -->
+  <!-- <script src="./static/js/bulma-slider.min.js"></script> -->
 </head>
 <body>
 
@@ -134,19 +143,23 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/teaser.mp4"
-                type="video/mp4">
-      </video>
-      <h2 class="subtitle has-text-centered">
-        SLAVA: Here I want to have a short teaser video that shows editing of images with a brush (with young feature, evil feature, cartoon/anime feature). 
-      </h2>
+      <!-- <video id="teaser" autoplay muted loop playsinline height="100%">
+        <source src="./static/videos/teaser.mp"
+                type="video/mp4" placeholder="A video of horisontally stacked 4 videos of feature painting, one per each layer">
+      </video> -->
+      <div class="red-rect-placeholder"></div>
+      <h4 class="has-text-centered slava-comment">
+        SLAVA: Here I want to have a short teaser video(s) that shows editing of images with a brush (with young feature, evil feature, cartoon/anime feature). 
+      </h4>
+      <div class="subtitle has-text-centered">
+      We trained SAEs on updates of 4 SDXL Turbo's transformer blocks. We find features to be causal: their manipulations enable image editing.
+      </div>
     </div>
   </div>
 </section>
 
 
-<section class="hero is-light is-small">
+<!-- <section class="hero is-light is-small">
   <div class="hero-body">
     <div class="container">
       <div id="results-carousel" class="carousel results-carousel">
@@ -201,10 +214,10 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
 
-<section class="section">
+<section class="section is-light">
   <div class="container is-max-desktop">
     <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
@@ -217,7 +230,7 @@
           into sparse sums of interpretable features, facilitating better control and subsequent analysis. Thus far, similar approaches have remained under-explored for
           text-to-image models. </p> <p> We investigated the possibility of using SAEs to learn interpretable features for few-step text-to-image diffusion models such as SDXL
           Turbo. To this end, we trained SAEs on the updates performed by transformer
-          blocks within SDXL Turbo’s denoising U-net. </p> <p> We find that their learned features
+          blocks within SDXL Turbo's denoising U-net. </p> <p> We find that their learned features
           are interpretable, causally influence the generation process, and reveal specialization among the blocks. In particular, we find blocks specializing in image
           composition, adding local details, color, illumination, and style. Our work thus
           represents an encouraging first step towards better understanding the internals of
@@ -241,35 +254,173 @@
   </div>
 </section>
 
+<section class="section hero-body">
+  <div class="container is-max-desktop">
+    <div class="red-rect-placeholder"></div>
+    <h4 class="has-text-centered slava-comment">
+      SLAVA: Here are 4 visualizations for sloth in tuxedo prompt with heatmaps. User can select a feature from radio bar to the right of each visualization.
+    </h4>
+    <div class="subtitle has-text-centered">
+      Activation regions of the learned SAE features.   
+    </div>
+  </div>
+</section>
+
+<section class="section is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width"> 
+        <div class="has-text-centered title is-2">How it works</div>
+        <p>
+          Sparse Autoencoders (SAEs) are two-layer neural networks designed to reconstruct input vectors 
+          while enforcing sparsity constraints in the hidden layer (i.e., only a few neurons are activated at once). 
+          This sparsity enables SAEs to extract interpretable features, which have been shown to be useful in large 
+          language models. Given this success, we explored the potential of SAEs 
+          in the domain of text-to-image generative models.
+        </p>
+        <br>
+        <p>
+          We used SDXL Turbo, a model that integrates transformer-powered U-net architecture 
+          to process input prompts for text-to-image generation. We selected four specific transformer 
+          blocks within the U-net -- <i>down.2.1</i>, <i>mid.0</i>, <i>up.0.0</i>, and <i>up.0.1</i> -- 
+          to analyze their roles in the generative process. Using a dataset of 1.5 million textual prompts from LAION-COCO, 
+          we stored intermediate feature map representations from these blocks and trained four sparse autoencoders to 
+          reconstruct these feature maps. The resulting learned features were not only interpretable but also 
+          had a controllable causal effect on generated images. Manipulating specific features revealed distinct transformer 
+          block specializations and enabled control over the generated images, such as adjusting semantic content 
+          or enhancing visual details.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section class="section">
   <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width"> 
+        <div class="has-text-centered title is-3">Where features are active</div>
+        <p>
+          For every feature, we collected images that fire the feature most strongly. Interestingly,
+          the images reflect similar objects or concepts, like... .
+          Note that the activation regions differ from quite scattered in the
+          blocks <i>down.2.1</i> and <i>up.0.1</i> to more localized and concentrated on <i>mid.0</i> and <i>up.0.0</i>. 
+        </p>
+        <div class="red-rect-placeholder"></div>
+        <div class="slava-comment">SLAVA: Some features examples with images of highest activation in the same format as above</div>
+        <div class="subtitle has-text-centered">
+            These features are very active during generation process of images above. Noticably, they seem to encode concrete objects
+            as well as more abstract concepts.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width"> 
+        <div class="has-text-centered title is-3">Features are causal</div>
+        <p>
+          Now, let's break into image generation process and try to manipulate feature values.
+          arc
+          The interventions are indeed effective 
+        </p>
+      </div>
+    </div>
+    <div class="columns">
+      <div class="column is-full-width"> 
+        <div class="sliders-container">
+          <div class="interpolation-container" data-folder="down_1802" data-frames="8">
+              <h3 class="title is-4">down.2.1 #1802</h3>
+              <!-- Slider will be dynamically added here -->
+          </div>
+          <div class="interpolation-container" data-folder="down_89" data-frames="7">
+            <h3 class="title is-4">down.2.1 #89</h3>
+            <!-- Slider will be dynamically added here -->
+          </div>
+          <div class="interpolation-container" data-folder="up0_4473" data-frames="7">
+            <h3 class="title is-4">up.0.0 #4473</h3>
+            <!-- Slider will be dynamically added here -->
+          </div>
+          <div class="interpolation-container" data-folder="z" data-frames="8">
+            <h3 class="title is-4">mid.0 #228</h3>
+            <!-- Slider will be dynamically added here -->
+          </div>
+        </div>
+        <div class="slava-comment">SLAVA: Carousel with sliders. We should include examples of all 4 layers</div>
+        
+      </div>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-full-width"> 
+        <p>Up until now, we discovered how does features affect images generated with a meaningful prompt. However, would the features 
+          make sense independently of the prompt? To investigate it, we tried to generate an image given an empty prompt, and turning off
+          all the features but one. That's what happened:
+        </p>
+        <div class="red-rect-placeholder"></div>
+        <div class="slava-comment">SLAVA: Examples of empty-prompt interventions of down.2.1 and up.0.1</div>
+        <div class="subtitle has-text-centered">
+            down.2.1 and up.0.1 features generate meaningful images even than being turned on during empty-prompt generation. down.2.1
+            interventions result in meaningful images, whereas up.0.1 interventions generate texture-like images.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <div class="is-centered">
-      <h2 class="title is-3">SDXL Unet Structure</h2>
-      <p>Here should be a Unet structure with clicable interesting block, clicking redirects to some "feature cards" of the layer</p>
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width"> 
+        <div class="has-text-centered title is-3">Try it yourself!</div>
+        <p>
+          We trained SAEs on SDXL Turbo's intermediate representations and showed that learned features are interpretable. 
+          Moreover, they demonstrate the blocks in the SDXL Turbo's have different roles in the image generation process.
+          Our hypothesis is:
+          <br>
+          - <i>down.2.1</i> defines what will be shown on the images (compositional block)
+          <br>
+          - <i>mid.0</i> assigns some low-level abstract semantics
+          <br>
+          - <i>up.0.0</i> adds details (details block)
+          <br>
+          - <i>up.0.1</i> generates colors and textures (style block)
+        </p>
+        <p>
+          Now it is your turn! Try our demo application and explore 20K+ features. 
+        </p>
+      </div>
     </div>
+    <div class="columns is-centered">
+      <div class="column is-full-width has-text-centered">
+        <div class="publication-links">
+          <span class="link-block">
+            <a href="https://arxiv.org/abs/2011.12948"
+              class="external-link button is-normal is-rounded is-dark">
+              <span class="icon">
+                  <!-- <i class="ai ai-arxiv"></i> -->
+              </span>
+              <span>Gradio+HuggingFace TODO</span>
+            </a>
+          </span>
+          <!-- Video Link. -->
+          <span class="link-block">
+            <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
+              class="external-link button is-normal is-rounded is-dark">
+              <span class="icon">
+                  <!-- <i class="fab fa-youtube"></i> -->
+              </span>
+            <span>Google Colab TODO</span>
+          </a>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <div class="is-centered">
-      <h2 class="title is-3">Composition layer</h2>
-      <p>Carousel with composition layer features</p>
-    </div>
-
-    <div class="is-centered">
-      <h2 class="title is-3">Style layer</h2>
-      <p>Carousel with style layer features</p>
-    </div>
-
-    <div class="is-centered">
-      <h2 class="title is-3">Details layer</h2>
-      <p>Carousel with details layer features</p>
-    </div>
-    
-    <div class="is-centered">
-      <h2 class="title is-3">Weird layer</h2>
-      <p>Carousel with mid layer features</p>
-    </div>
-    
+<section class="section is-light">
+  <div class="container is-max-desktop">
     <h3 class="title is-2">Legacy</h3>
     <div class="columns is-centered">
 
@@ -314,7 +465,7 @@
       <div class="column is-full-width">
         <h2 class="title is-3">Animation</h2>
 
-        <!-- Interpolating. -->
+        <!-- Interpolating.
         <h3 class="title is-4">Interpolating states</h3>
         <div class="content has-text-justified">
           <p>
@@ -346,7 +497,7 @@
           </div>
         </div>
         <br/>
-        <!--/ Interpolating. -->
+       Interpolating. -->
 
         <!-- Re-rendering. -->
         <h3 class="title is-4">Re-rendering the input video</h3>
@@ -403,6 +554,26 @@
 
   </div>
 </section>
+
+
+<!-- <section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Image Interpolation</h2>
+    
+    <div class="interpolation-container" data-folder="stacked" data-frames="10">
+      <h3 class="title is-4">Interpolation 1</h3>
+      <!- - Slider will be dynamically added here - ->
+    </div>
+
+    <div class="interpolation-container" data-folder="stacked2" data-frames="10">
+      <h3 class="title is-4">Interpolation 2</h3>
+      <!- - Slider will be dynamically added here - ->
+    </div>
+
+    <!- - Add more interpolation-container divs as needed - ->
+
+  </div>
+</section> -->
 
 
 <section class="section" id="BibTeX">
