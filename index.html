@@ -297,22 +297,61 @@
 
 <section class="section">
   <div class="container is-max-desktop">
-    <div class="columns is-centered">
+    <div class="has-text-centered title is-3">Where features are active</div>
+    <p>
+      For every feature, we collected images that fire the feature most strongly. Interestingly,
+      the images reflect similar objects or concepts, like... .
+      Note that the activation regions differ from quite scattered in the
+      blocks <i>down.2.1</i> and <i>up.0.1</i> to more localized and concentrated on <i>mid.0</i> and <i>up.0.0</i>. 
+    </p>
+    <div class="columns">
       <div class="column is-full-width"> 
-        <div class="has-text-centered title is-3">Where features are active</div>
-        <p>
-          For every feature, we collected images that fire the feature most strongly. Interestingly,
-          the images reflect similar objects or concepts, like... .
-          Note that the activation regions differ from quite scattered in the
-          blocks <i>down.2.1</i> and <i>up.0.1</i> to more localized and concentrated on <i>mid.0</i> and <i>up.0.0</i>. 
-        </p>
-        <div class="red-rect-placeholder"></div>
-        <div class="slava-comment">SLAVA: Some features examples with images of highest activation in the same format as above</div>
-        <div class="subtitle has-text-centered">
-            These features are very active during generation process of images above. Noticably, they seem to encode concrete objects
-            as well as more abstract concepts.
-        </div>
+            <div class="sliders-container">
+              <div class="top-image">
+                <img src="./static/top/down_0.jpg" alt="Feature 1">
+                <p>down.2.1 #0</p>
+              </div>
+              <div class="top-image">
+                <img src="./static/top/down_1.jpg" alt="Feature 2">
+                <p>down.2.1 #1</p>
+              </div>
+              <div class="top-image">
+                <img src="./static/top/down_2.jpg" alt="Feature 3">
+                <p>down.2.1 #2</p>
+              </div>
+            
+              <div class="top-image">
+                <img src="./static/top/up_0.jpg" alt="Feature 1">
+                <p>up.0.1 #0</p>
+              </div>
+              <div class="top-image">
+                <img src="./static/top/up_1.jpg" alt="Feature 2">
+                <p>up.0.1 #1</p>
+              </div>
+              <div class="top-image">
+                <img src="./static/top/up_2.jpg" alt="Feature 3">
+                <p>up.0.1 #2</p>
+              </div>
+
+              <div class="top-image">
+                <img src="./static/top/up0_0.jpg" alt="Feature 1">
+                <p>up.0.0 #0</p>
+              </div>
+              <div class="top-image">
+                <img src="./static/top/up0_1.jpg" alt="Feature 2">
+                <p>up.0.0 #1</p>
+              </div>
+              <div class="top-image">
+                <img src="./static/top/up0_2.jpg" alt="Feature 3">
+                <p>up.0.0 #2</p>
+              </div>            
+            </div>
+            <div class="slava-comment">SLAVA: Some features examples with images of highest activation in the same format as above TODO MID</div>
       </div>
+    </div>
+    <div class="subtitle has-text-centered">
+        These features are very active during generation process of images above. Noticably, they seem to encode concrete objects
+        as well as more abstract concepts.
     </div>
   </div>
 </section>
@@ -370,7 +409,16 @@
           make sense independently of the prompt? To investigate it, we tried to generate an image given an empty prompt, and turning off
           all the features but one. That's what happened:
         </p>
-        <div class="red-rect-placeholder"></div>
+        <div class="sliders-container">
+          <div class="zero-image">
+            <img src="./static/zeroint/down.jpg" alt="Feature 1">
+            <p>down.2.1</p>
+          </div>
+          <div class="zero-image">
+            <img src="./static/zeroint/up.jpg" alt="Feature 2">
+            <p>up.0.1</p>
+          </div>           
+        </div>
         <div class="slava-comment">SLAVA: Examples of empty-prompt interventions of down.2.1 and up.0.1</div>
         <div class="subtitle has-text-centered">
             down.2.1 and up.0.1 features generate meaningful images even than being turned on during empty-prompt generation. down.2.1

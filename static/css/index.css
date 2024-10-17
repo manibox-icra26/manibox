@@ -194,9 +194,27 @@ body {
 
 .sliders-container{
   display: flex;
-  justify-content: center;
+  justify-content: left;
+}
+
+.column {
+  justify-self: left;
 }
 
 .columns {
+  display: flex;
+  justify-content: left;
   overflow-x: auto;
+}
+
+.top-image {
+  width: 300px;
+  height: auto;
+  margin: 15px;
+  text-align: center;
+}
+
+.zero-image {
+  margin: 10px;
+  text-align: center;
 }
