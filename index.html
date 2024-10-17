@@ -25,18 +25,29 @@
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
         rel="stylesheet">
 
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <!-- <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css"> -->
+  <!-- Bulma CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+
+  <!-- Bulma Carousel CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel/dist/css/bulma-carousel.min.css">
+
+  <!-- Bulma Slider CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-slider@2.0.5/dist/css/bulma-slider.min.css">
+
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
   <link rel="icon" href="./static/images/favicon.svg">
-
+  
+  <script src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.4/dist/js/bulma-carousel.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bulma-slider@2.0.5/dist/js/bulma-slider.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+  <!-- <script src="./static/js/bulma-carousel.min.js"></script> -->
+  <!-- <script src="./static/js/bulma-slider.min.js"></script> -->
 </head>
 <body>
 
@@ -284,6 +295,7 @@
     </div>
   </div>
 </section>
+
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
@@ -315,7 +327,28 @@
           arc
           The interventions are indeed effective 
         </p>
-        <div class="red-rect-placeholder"></div>
+      </div>
+    </div>
+    <div class="columns">
+      <div class="column is-full-width"> 
+        <div class="sliders-container">
+          <div class="interpolation-container" data-folder="down_1802" data-frames="8">
+              <h3 class="title is-4">down.2.1 #1802</h3>
+              <!-- Slider will be dynamically added here -->
+          </div>
+          <div class="interpolation-container" data-folder="down_89" data-frames="7">
+            <h3 class="title is-4">down.2.1 #89</h3>
+            <!-- Slider will be dynamically added here -->
+          </div>
+          <div class="interpolation-container" data-folder="up0_4473" data-frames="7">
+            <h3 class="title is-4">up.0.0 #4473</h3>
+            <!-- Slider will be dynamically added here -->
+          </div>
+          <div class="interpolation-container" data-folder="z" data-frames="8">
+            <h3 class="title is-4">mid.0 #228</h3>
+            <!-- Slider will be dynamically added here -->
+          </div>
+        </div>
         <div class="slava-comment">SLAVA: Carousel with sliders. We should include examples of all 4 layers</div>
         
       </div>
@@ -524,24 +557,24 @@
 </section>
 
 
-<section class="section">
+<!-- <section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3">Image Interpolation</h2>
     
     <div class="interpolation-container" data-folder="stacked" data-frames="10">
       <h3 class="title is-4">Interpolation 1</h3>
-      <!-- Slider will be dynamically added here -->
+      <!- - Slider will be dynamically added here - ->
     </div>
 
     <div class="interpolation-container" data-folder="stacked2" data-frames="10">
       <h3 class="title is-4">Interpolation 2</h3>
-      <!-- Slider will be dynamically added here -->
+      <!- - Slider will be dynamically added here - ->
     </div>
 
-    <!-- Add more interpolation-container divs as needed -->
+    <!- - Add more interpolation-container divs as needed - ->
 
   </div>
-</section>
+</section> -->
 
 
 <section class="section" id="BibTeX">

@@ -20,7 +20,7 @@ function preloadInterpolationImages(callback) {
           callback();
         }
       };
-      img.src = `./static/interpolation/${folder}/${String(i).padStart(6, '0')}.jpg`;
+      img.src = `./static/interpolation/${folder}/${String(i)}.webp`;
       preloadedImages[folder][i] = img;
     }
   });
@@ -34,12 +34,6 @@ function createInterpolationSlider(container) {
 
   const sliderHtml = `
     <div class="columns is-vcentered interpolation-panel">
-      <div class="column is-3 has-text-centered">
-        <img src="./static/interpolation/${folder}/000000.jpg"
-             class="interpolation-image"
-             alt="Start Frame"/>
-        <p>Start Frame</p>
-      </div>
       <div class="column interpolation-video-column">
         <div id="${imageWrapperId}">
           <div class="loading">Loading...</div>
@@ -48,12 +42,6 @@ function createInterpolationSlider(container) {
                id="${sliderId}"
                step="1" min="0" max="${frames - 1}" value="0" type="range">
       </div>
-      <div class="column is-3 has-text-centered">
-        <img src="./static/interpolation/${folder}/${String(frames - 1).padStart(6, '0')}.jpg"
-             class="interpolation-image"
-             alt="End Frame"/>
-        <p class="is-bold">End Frame</p>
-      </div>
     </div>
   `;
 
@@ -61,9 +49,9 @@ function createInterpolationSlider(container) {
 
   $(`#${sliderId}`).on('input', function(event) {
     const image = preloadedImages[folder][this.value];
+    
     setInterpolationImage(imageWrapperId, image);
   });
-
   // Set initial image
   setInterpolationImage(imageWrapperId, preloadedImages[folder][0]);
 }
@@ -71,7 +59,8 @@ function createInterpolationSlider(container) {
 function setInterpolationImage(imageWrapperId, image) {
   image.ondragstart = () => false;
   image.oncontextmenu = () => false;
-  $(`#${imageWrapperId}`).empty().append(image);
+  var element = $("#" + imageWrapperId);
+  element.empty().append(image);
 }
 
 $(document).ready(function() {
@@ -95,25 +84,22 @@ $(document).ready(function() {
 			autoplaySpeed: 3000,
     }
 
-		// Initialize all div with carousel class
-    var carousels = bulmaCarousel.attach('.carousel', options);
+    // // Loop on each carousel initialized
+    // for(var i = 0; i < carousels.length; i++) {
+    // 	// Add listener to  event
+    // 	carousels[i].on('before:show', state => {
+    // 		console.log(state);
+    // 	});
+    // }
 
-    // Loop on each carousel initialized
-    for(var i = 0; i < carousels.length; i++) {
-    	// Add listener to  event
-    	carousels[i].on('before:show', state => {
-    		console.log(state);
-    	});
-    }
-
-    // Access to bulmaCarousel instance of an element
-    var element = document.querySelector('#my-element');
-    if (element && element.bulmaCarousel) {
-    	// bulmaCarousel instance is available as element.bulmaCarousel
-    	element.bulmaCarousel.on('before-show', function(state) {
-    		console.log(state);
-    	});
-    }
+    // // Access to bulmaCarousel instance of an element
+    // var element = document.querySelector('#my-element');
+    // if (element && element.bulmaCarousel) {
+    // 	// bulmaCarousel instance is available as element.bulmaCarousel
+    // 	element.bulmaCarousel.on('before-show', function(state) {
+    // 		console.log(state);
+    // 	});
+    // }
 
     /*var player = document.getElementById('interpolation-video');
     player.addEventListener('loadedmetadata', function() {

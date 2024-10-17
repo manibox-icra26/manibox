@@ -186,3 +186,17 @@ body {
   height:400px;
   background-color:red
 }
+
+.interpolation-container {
+  width: 400px;
+  margin: 10px;
+}
+
+.sliders-container{
+  display: flex;
+  justify-content: center;
+}
+
+.columns {
+  overflow-x: auto;
+}
