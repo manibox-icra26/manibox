@@ -140,24 +140,77 @@
   </div>
 </section>
 
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <!-- <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/teaser.mp"
-                type="video/mp4" placeholder="A video of horisontally stacked 4 videos of feature painting, one per each layer">
-      </video> -->
-      <div class="red-rect-placeholder"></div>
-      <h4 class="has-text-centered slava-comment">
-        SLAVA: Here I want to have a short teaser video(s) that shows editing of images with a brush (with young feature, evil feature, cartoon/anime feature). 
-      </h4>
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-steve">
+          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/clips/0 A sloth is eating dinner at his office desk.webm"
+                    type="video/webm">
+          </video>
+        </div>
+        <div class="item item-chair-tp">
+          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/clips/2301 A cartoon of a cat in a suit.webm"
+                    type="video/webm">
+          </video>
+        </div>
+        <div class="item item-shiba">
+          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/clips/3072 A dragon curled around a treasure hoard in a dark cave, depicted in a detailed fantasy oil painting style.webm"
+                    type="video/webm">
+          </video>
+        </div>
+        <div class="item item-fullbody">
+          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/clips/3183 Strength 20 A bird sitting on a tree, 4K photography.webm"
+                    type="video/webm">
+          </video>
+        </div>
+        <div class="item item-blueshirt">
+          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/clips/4013 A portrait of a dog.webm"
+                    type="video/webm">
+          </video>
+        </div>
+        <div class="item item-mask">
+          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/clips/4751 A cat wearing glasses, deep in thought, sitting at a computer desk covered in coding books and wires, depicted in a realistic photo style..webm"
+                    type="video/webm">
+          </video>
+        </div>
+        <div class="item item-coffee">
+          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/clips/4998 A fox dressed in a suit, holding a briefcase and walking through a bustling city.webm"
+                    type="video/webm">
+          </video>
+        </div>
+        <div class="item item-toby">
+          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/clips/up01 2615 A robotic dog running through a futuristic city, leaving a trail of sparks behind, illustrated in a retro-futuristic style.webm"
+                    type="video/webm">
+          </video>
+        </div>
+        <div class="item item-toby">
+          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/clips/up01 90 Strength 5 A Viking warrior rowing a longship through icy waters, illustrated in a bold, graphic novel style..webm"
+                    type="video/webm">
+          </video>
+        </div>
+        <div class="item item-toby">
+          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/clips/up01 4977 Strength 5 A cat with a monocle sitting in a Victorian study, smoking a pipe, in a sepia-toned vintage photo style.webm"
+                    type="video/webm">
+          </video>
+        </div>
+      </div>
       <div class="subtitle has-text-centered">
-      We trained SAEs on updates of 4 SDXL Turbo's transformer blocks. We find features to be causal: their manipulations enable image editing.
+        We decomposed the generative process of SDXL Turbo into interpretable features using Sparse Autoencoders. The features are causal and can be manipulated to control the generated images.
       </div>
     </div>
   </div>
 </section>
-
 
 <!-- <section class="hero is-light is-small">
   <div class="hero-body">
@@ -257,9 +310,6 @@
 <section class="section hero-body">
   <div class="container is-max-desktop">
     <div class="red-rect-placeholder"></div>
-    <h4 class="has-text-centered slava-comment">
-      SLAVA: Here are 4 visualizations for sloth in tuxedo prompt with heatmaps. User can select a feature from radio bar to the right of each visualization.
-    </h4>
     <div class="subtitle has-text-centered">
       Activation regions of the learned SAE features.   
     </div>
@@ -299,8 +349,9 @@
   <div class="container is-max-desktop">
     <div class="has-text-centered title is-3">Where features are active</div>
     <p>
-      For every feature, we collected images that fire the feature most strongly. Interestingly,
-      the images reflect similar objects or concepts, like... .
+      For every feature, we collected images that fire the feature most strongly during generation process and highlighted
+      the regions of highest activations. Interestingly,
+      the images reflect similar objects or concepts.
       Note that the activation regions differ from quite scattered in the
       blocks <i>down.2.1</i> and <i>up.0.1</i> to more localized and concentrated on <i>mid.0</i> and <i>up.0.0</i>. 
     </p>
@@ -359,12 +410,7 @@
                 <p>up.0.0 #2</p>
               </div>            
             </div>
-            <div class="slava-comment">SLAVA: Some features examples with images of highest activation in the same format as above TODO MID</div>
       </div>
-    </div>
-    <div class="subtitle has-text-centered">
-        These features are very active during generation process of images above. Noticably, they seem to encode concrete objects
-        as well as more abstract concepts.
     </div>
   </div>
 </section>
@@ -375,8 +421,7 @@
         <div class="has-text-centered title is-3">Features are causal</div>
         <p>
           Now, let's break into image generation process and try to manipulate feature values.
-          arc
-          The interventions are indeed effective 
+          Using sliders, you can increase features' strength. 
         </p>
       </div>
     </div>
@@ -412,14 +457,14 @@
             <!-- Slider will be dynamically added here -->
           </div>
         </div>
-        <div class="slava-comment">SLAVA: Carousel with sliders. We should include examples of all 4 layers</div>
-        
       </div>
     </div>
+
     <div class="columns is-centered">
-      <div class="column is-full-width"> 
+      <div class="column is-full-width">
+        <div class="has-text-centered title is-3">A feature can solely generate a meaningful image</div>
         <p>Up until now, we discovered how does features affect images generated with a meaningful prompt. However, would the features 
-          make sense independently of the prompt? To investigate it, we tried to generate an image given an empty prompt, and turning off
+          make sense independently of any textual description? To investigate it, we tried to generate an image given an empty prompt, and turning off
           all the features but one. That's what happened:
         </p>
         <div class="sliders-container">
@@ -432,11 +477,10 @@
             <p>up.0.1</p>
           </div>           
         </div>
-        <div class="slava-comment">SLAVA: Examples of empty-prompt interventions of down.2.1 and up.0.1</div>
-        <div class="subtitle has-text-centered">
+        <p>
             down.2.1 and up.0.1 features generate meaningful images even than being turned on during empty-prompt generation. down.2.1
             interventions result in meaningful images, whereas up.0.1 interventions generate texture-like images.
-        </div>
+        </p>
       </div>
     </div>
   </div>
@@ -492,143 +536,6 @@
   </div>
 </section>
 
-<section class="section is-light">
-  <div class="container is-max-desktop">
-    <h3 class="title is-2">Legacy</h3>
-    <div class="columns is-centered">
-
-      <!-- Visual Effects. -->
-      <div class="column">
-        <div class="content">
-          <h2 class="title is-3">Visual Effects</h2>
-          <p>
-            Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
-            would be impossible without nerfies since it would require going through a wall.
-          </p>
-          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/dollyzoom-stacked.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!--/ Visual Effects. -->
-
-      <!-- Matting. -->
-      <div class="column">
-        <h2 class="title is-3">Matting</h2>
-        <div class="columns is-centered">
-          <div class="column content">
-            <p>
-              As a byproduct of our method, we can also solve the matting problem by ignoring
-              samples that fall outside of a bounding box during rendering.
-            </p>
-            <video id="matting-video" controls playsinline height="100%">
-              <source src="./static/videos/matting.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
-
-        </div>
-      </div>
-    </div>
-    <!--/ Matting. -->
-
-    <!-- Animation. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Animation</h2>
-
-        <!-- Interpolating.
-        <h3 class="title is-4">Interpolating states</h3>
-        <div class="content has-text-justified">
-          <p>
-            We can also animate the scene by interpolating the deformation latent codes of two input
-            frames. Use the slider here to linearly interpolate between the left frame and the right
-            frame.
-          </p>
-        </div>
-        <div class="columns is-vcentered interpolation-panel">
-          <div class="column is-3 has-text-centered">
-            <img src="./static/images/interpolate_start.jpg"
-                 class="interpolation-image"
-                 alt="Interpolate start reference image."/>
-            <p>Start Frame</p>
-          </div>
-          <div class="column interpolation-video-column">
-            <div id="interpolation-image-wrapper">
-              Loading...
-            </div>
-            <input class="slider is-fullwidth is-large is-info"
-                   id="interpolation-slider"
-                   step="1" min="0" max="100" value="0" type="range">
-          </div>
-          <div class="column is-3 has-text-centered">
-            <img src="./static/images/interpolate_end.jpg"
-                 class="interpolation-image"
-                 alt="Interpolation end reference image."/>
-            <p class="is-bold">End Frame</p>
-          </div>
-        </div>
-        <br/>
-       Interpolating. -->
-
-        <!-- Re-rendering. -->
-        <h3 class="title is-4">Re-rendering the input video</h3>
-        <div class="content has-text-justified">
-          <p>
-            Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
-            viewpoint such as a stabilized camera by playing back the training deformations.
-          </p>
-        </div>
-        <div class="content has-text-centered">
-          <video id="replay-video"
-                 controls
-                 muted
-                 preload
-                 playsinline
-                 width="75%">
-            <source src="./static/videos/replay.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <!--/ Re-rendering. -->
-
-      </div>
-    </div>
-    <!--/ Animation. -->
-
-
-    <!-- Concurrent Work. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Related Links</h2>
-
-        <div class="content has-text-justified">
-          <p>
-            There's a lot of excellent work that was introduced around the same time as ours.
-          </p>
-          <p>
-            <a href="https://arxiv.org/abs/2104.09125">Progressive Encoding for Neural Optimization</a> introduces an idea similar to our windowed position encoding for coarse-to-fine optimization.
-          </p>
-          <p>
-            <a href="https://www.albertpumarola.com/research/D-NeRF/index.html">D-NeRF</a> and <a href="https://gvv.mpi-inf.mpg.de/projects/nonrigid_nerf/">NR-NeRF</a>
-            both use deformation fields to model non-rigid scenes.
-          </p>
-          <p>
-            Some works model videos with a NeRF by directly modulating the density, such as <a href="https://video-nerf.github.io/">Video-NeRF</a>, <a href="https://www.cs.cornell.edu/~zl548/NSFF/">NSFF</a>, and <a href="https://neural-3d-video.github.io/">DyNeRF</a>
-          </p>
-          <p>
-            There are probably many more by the time you are reading this. Check out <a href="https://dellaert.github.io/NeRF/">Frank Dellart's survey on recent NeRF papers</a>, and <a href="https://github.com/yenchenlin/awesome-NeRF">Yen-Chen Lin's curated list of NeRF papers</a>.
-          </p>
-        </div>
-      </div>
-    </div>
-    <!--/ Concurrent Work. -->
-
-  </div>
-</section>
-
-
 <!-- <section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3">Image Interpolation</h2>
@@ -678,17 +585,13 @@
         <div class="content">
           <p>
             This website is licensed under a <a rel="license"
-                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-          <p>
-            This means you are free to borrow the <a
-              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
-            we just ask that you link back to this page in the footer.
-            Please remember to remove the analytics code included in the header of the website which
-            you do not want on your website.
-          </p>
-        </div>
+            href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+          Commons Attribution-ShareAlike 4.0 International License</a>.
+        </p>
+        <p>
+          Website source code based on the <a href="https://nerfies.github.io/"> Nerfies</a> project page. If you want to reuse their <a
+          href="https://github.com/nerfies/nerfies.github.io">source code</a>, please credit them appropriately.
+        </p>
       </div>
     </div>
   </div>

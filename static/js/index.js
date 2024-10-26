@@ -76,12 +76,35 @@ $(document).ready(function() {
     });
 
     var options = {
-			slidesToScroll: 1,
-			slidesToShow: 3,
+			slidesToScroll: 3,
+			slidesToShow: 5,
 			loop: true,
 			infinite: true,
 			autoplay: false,
 			autoplaySpeed: 3000,
+      pagination: false
+    }
+		// Initialize all div with carousel class
+    var carousels = bulmaCarousel.attach('.carousel', options);
+
+    // Access to bulmaCarousel instance of an element
+    var element = document.querySelector('#my-element');
+    if (element && element.bulmaCarousel) {
+    	// bulmaCarousel instance is available as element.bulmaCarousel
+    	element.bulmaCarousel.on('before-show', function(state) {
+    		console.log(state);
+    	});
+    }
+
+    
+    var videos = document.querySelectorAll('video')
+
+    for (var i = 0; i < videos.length; i++) {
+      // alert(videos[i])
+      //set playbackspeed to duration / 7
+      videos[i].addEventListener('loadedmetadata', function() {
+        this.playbackRate = this.duration / 7;
+      }, false);
     }
 
     // // Loop on each carousel initialized
