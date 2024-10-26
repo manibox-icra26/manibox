@@ -349,9 +349,8 @@
   <div class="container is-max-desktop">
     <div class="has-text-centered title is-3">Where features are active</div>
     <p>
-      For every feature, we collected images that fire the feature most strongly during generation process and highlighted
-      the regions of highest activations. Interestingly,
-      the images reflect similar objects or concepts.
+      For every feature, we collected images that fire the feature most strongly. Interestingly,
+      the images reflect similar objects or concepts, like folders (down.2.1.#0), kitchen islands (down.2.1.#1), and so on.
       Note that the activation regions differ from quite scattered in the
       blocks <i>down.2.1</i> and <i>up.0.1</i> to more localized and concentrated on <i>mid.0</i> and <i>up.0.0</i>. 
     </p>
@@ -412,6 +411,9 @@
             </div>
       </div>
     </div>
+    <div class="subtitle has-text-centered">
+        These features are highly active during the image generation process. Notably, they appear to encode both concrete objects as well as abstract concepts.
+    </div>
   </div>
 </section>
 <section class="section is-light">
@@ -420,8 +422,7 @@
       <div class="column is-full-width"> 
         <div class="has-text-centered title is-3">Features are causal</div>
         <p>
-          Now, let's break into image generation process and try to manipulate feature values.
-          Using sliders, you can increase features' strength. 
+          Now, let's break into image generation process and try to manipulate feature values. You can increase the features' activation by using the sliders below and observe their effects.
         </p>
       </div>
     </div>
@@ -492,7 +493,7 @@
       <div class="column is-full-width"> 
         <div class="has-text-centered title is-3">Try it yourself!</div>
         <p>
-          We trained SAEs on SDXL Turbo's intermediate representations and showed that learned features are interpretable. 
+          We trained SAEs on SDXL Turbo's intermediate representations and showed that the learned features are interpretable and causal. 
           Moreover, they demonstrate the blocks in the SDXL Turbo's have different roles in the image generation process.
           Our hypothesis is:
           <br>
