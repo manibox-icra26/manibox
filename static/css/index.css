@@ -202,6 +202,10 @@ body {
   justify-self: left;
 }
 
+.column .is-centered {
+  justify-self: center;
+}
+
 .columns {
   display: flex;
   justify-content: left;

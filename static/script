@@ -1,0 +1,123 @@
+#!/bin/bash
+
+# Exit immediately if a command exits with a non-zero status, or if an undefined variable is used
+set -euo pipefail
+
+# Input and output directory (change these paths as needed)
+input_dir="./clips"       # Folder containing the original videos
+output_dir="./clips_7s"      # Folder to save the processed videos
+
+# Target duration in seconds
+target_duration=7
+
+# Create output directory if it doesn't exist
+mkdir -p "$output_dir"
+
+# Loop over each video in the input directory
+for input_file in "$input_dir"/*; do
+    # Check if the file exists and is a regular file
+    if [[ -f "$input_file" ]]; then
+        echo "Processing file: $input_file"
+
+        # Get the filename without the extension
+        filename=$(basename -- "$input_file")
+        extension="${filename##*.}"
+        filename="${filename%.*}"
+
+        # Get the duration of the video in seconds using ffprobe
+        duration=$(ffprobe -v error -show_entries format=duration \
+                  -of default=noprint_wrappers=1:nokey=1 "$input_file")
+
+        # Trim decimal places from duration for debug output
+        duration_rounded=$(printf "%.2f" "$duration")
+        echo "Original duration: $duration_rounded seconds"
+
+        # Check if duration was obtained
+        if [[ -z "$duration" ]]; then
+            echo "Could not get duration for $input_file. Skipping."
+            continue
+        fi
+
+        # Calculate the speed factor to reach the target duration
+        speed_factor=$(echo "$duration / $target_duration" | bc -l)
+        speed_factor_rounded=$(printf "%.4f" "$speed_factor")
+        echo "Calculated speed factor: $speed_factor_rounded"
+
+        # Handle potential division by zero or invalid speed factor
+        if (( $(echo "$speed_factor <= 0" | bc -l) )); then
+            echo "Invalid speed factor for $input_file. Skipping."
+            continue
+        fi
+
+        # Check if the file has an audio stream
+        has_audio=$(ffprobe -v error -select_streams a -show_entries stream=codec_type \
+                    -of csv=p=0 "$input_file" | wc -l)
+
+        # Define filter_complex and mapping options
+        if [[ "$has_audio" -gt 0 ]]; then
+            echo "Audio stream detected."
+            # Build the atempo filter chain for audio
+            atempo_filter=""
+            speed_remaining=$speed_factor
+
+            # Handle speed factors less than 0.5 (slow down significantly)
+            while (( $(echo "$speed_remaining < 0.5" | bc -l) )); do
+                atempo_filter="$atempo_filter,atempo=0.5"
+                speed_remaining=$(echo "$speed_remaining / 0.5" | bc -l)
+            done
+
+            # Handle speed factors greater than 2.0 (speed up significantly)
+            while (( $(echo "$speed_remaining > 2.0" | bc -l) )); do
+                atempo_filter="$atempo_filter,atempo=2.0"
+                speed_remaining=$(echo "$speed_remaining / 2.0" | bc -l)
+            done
+
+            # Append the remaining speed adjustment if not close to 1.0
+            if (( $(echo "$speed_remaining != 1.0" | bc -l) )); then
+                atempo_filter="$atempo_filter,atempo=$speed_remaining"
+            fi
+
+            # Remove leading comma
+            atempo_filter="${atempo_filter#,}"
+
+            echo "Audio atempo filter chain: $atempo_filter"
+
+            # Build filter_complex with audio processing
+            filter_complex="[0:v]setpts=PTS/$speed_factor[v];[0:a]$atempo_filter[a]"
+            map_options="-map [v] -map [a]"
+        else
+            echo "No audio stream detected."
+            # Build filter_complex without audio processing
+            filter_complex="[0:v]setpts=PTS/$speed_factor[v]"
+            map_options="-map [v]"
+        fi
+
+        # Define output file path
+        output_file="$output_dir/${filename}_adjusted.${extension}"
+
+        # Build FFmpeg command
+        ffmpeg_command=(
+            ffmpeg -y -i "$input_file"
+            -filter_complex "$filter_complex"
+            $map_options
+            "$output_file"
+        )
+
+        # Print the FFmpeg command for debugging
+        echo "Running FFmpeg command:"
+        echo "${ffmpeg_command[@]}"
+
+        # Run FFmpeg and capture any errors
+        if ! "${ffmpeg_command[@]}" 2> ffmpeg_error.log; then
+            echo "FFmpeg failed to process $input_file. Check ffmpeg_error.log for details."
+            continue
+        fi
+
+        echo "Processed $filename to $output_file with speed factor $speed_factor_rounded"
+    else
+        echo "$input_file is not a valid file. Skipping."
+    fi
+done
+
+echo "All videos processed and saved to $output_dir."
+

@@ -96,17 +96,6 @@ $(document).ready(function() {
     	});
     }
 
-    
-    var videos = document.querySelectorAll('video')
-
-    for (var i = 0; i < videos.length; i++) {
-      // alert(videos[i])
-      //set playbackspeed to duration / 7
-      videos[i].addEventListener('loadedmetadata', function() {
-        this.playbackRate = this.duration / 7;
-      }, false);
-    }
-
     // // Loop on each carousel initialized
     // for(var i = 0; i < carousels.length; i++) {
     // 	// Add listener to  event
