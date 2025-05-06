@@ -39,48 +39,9 @@
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
+  <script src="./static/js/video_comparison.js"></script>
 </head>
 <body>
-
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-  <div class="navbar-menu">
-    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-      <a class="navbar-item" href="https://keunhong.com">
-      <span class="icon">
-          <i class="fas fa-home"></i>
-      </span>
-      </a>
-
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More Research
-        </a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item" href="https://hypernerf.github.io">
-            HyperNeRF
-          </a>
-          <a class="navbar-item" href="https://nerfies.github.io">
-            Nerfies
-          </a>
-          <a class="navbar-item" href="https://latentfusion.github.io">
-            LatentFusion
-          </a>
-          <a class="navbar-item" href="https://photoshape.github.io">
-            PhotoShape
-          </a>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</nav>
 
 
 <section class="hero">
@@ -88,7 +49,7 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Nerfies: Deformable Neural Radiance Fields</h1>
+          <h1 class="title is-1 publication-title">Anymate: A Dataset and Baselines for Learning 3D Object Rigging</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
               <a href="https://keunhong.com">Keunhong Park</a><sup>1</sup>,</span>
@@ -183,66 +144,89 @@
                 type="video/mp4">
       </video>
       <h2 class="subtitle has-text-centered">
-        <span class="dnerf">Nerfies</span> turns selfie videos from your phone into
-        free-viewpoint
-        portraits.
+        <span class="dnerf">Anymate</span> turns static 3D meshes into animatable assets <br>
+        with automatically predicted rigging and skinning.
       </h2>
     </div>
   </div>
 </section>
 
 
-<section class="hero is-light is-small">
+
+
+
+<!-- <section class="hero is-light is-small">
   <div class="hero-body">
     <div class="container">
       <div id="results-carousel" class="carousel results-carousel">
         <div class="item item-steve">
-          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/steve.mp4"
-                    type="video/mp4">
-          </video>
+          <div>
+            <video class="video" id="v1"  width="50%"  loop playsinline autoPlay muted src="./static/videos/woman_tex.mp4" onplay="resizeAndPlay(this)"></video>
+            <canvas width="150" height="150" class="videoMerge" id="v1Merge"></canvas>
+          </div>
         </div>
         <div class="item item-chair-tp">
-          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/chair-tp.mp4"
-                    type="video/mp4">
-          </video>
+          <div>
+            <video class="video" id="v2"  width="50%"  loop playsinline autoPlay muted src="./static/videos/dinosaur_tex.mp4" onplay="resizeAndPlay(this)"></video>
+            <canvas width="150" height="150" class="videoMerge" id="v2Merge"></canvas>
+          </div>
         </div>
         <div class="item item-shiba">
-          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/shiba.mp4"
-                    type="video/mp4">
-          </video>
+          <div>
+            <video class="video" id="v3"  width="50%"  loop playsinline autoPlay muted src="./static/videos/fox_tex.mp4" onplay="resizeAndPlay(this)"></video>
+            <canvas width="150" height="150" class="videoMerge" id="v3Merge"></canvas>
+          </div>
         </div>
         <div class="item item-fullbody">
-          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/fullbody.mp4"
-                    type="video/mp4">
-          </video>
+          <div>
+            <video class="video" id="v4"  width="50%"  loop playsinline autoPlay muted src="./static/videos/bird_tex.mp4" onplay="resizeAndPlay(this)"></video>
+            <canvas width="150" height="150" class="videoMerge" id="v4Merge"></canvas>
+          </div>
         </div>
-        <div class="item item-blueshirt">
-          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/blueshirt.mp4"
-                    type="video/mp4">
-          </video>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Animation Result of Rigging Predicted by Anymate</h2>
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content">
+          <div>
+            <video class="video" id="v1"  width="50%"  loop playsinline autoPlay muted src="./static/videos/woman_tex.mp4" onplay="resizeAndPlay(this)"></video>
+            <canvas width="150" height="150" class="videoMerge" id="v1Merge"></canvas>
+          </div>
         </div>
-        <div class="item item-mask">
-          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/mask.mp4"
-                    type="video/mp4">
-          </video>
+      </div>
+
+      <div class="column">
+        <div class="content">
+          <div>
+            <video class="video" id="v2"  width="50%"  loop playsinline autoPlay muted src="./static/videos/dinosaur_tex.mp4" onplay="resizeAndPlay(this)"></video>
+            <canvas width="150" height="150" class="videoMerge" id="v2Merge"></canvas>
+          </div>
         </div>
-        <div class="item item-coffee">
-          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/coffee.mp4"
-                    type="video/mp4">
-          </video>
+      </div>
+
+      <div class="column">
+        <div class="content">
+          <div>
+            <video class="video" id="v3"  width="50%"  loop playsinline autoPlay muted src="./static/videos/fox_tex.mp4" onplay="resizeAndPlay(this)"></video>
+            <canvas width="150" height="150" class="videoMerge" id="v3Merge"></canvas>
+          </div>
         </div>
-        <div class="item item-toby">
-          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/toby2.mp4"
-                    type="video/mp4">
-          </video>
+      </div>
+
+      <div class="column">
+        <div class="content">
+          <div>
+            <video class="video" id="v4"  width="50%"  loop playsinline autoPlay muted src="./static/videos/bird_tex.mp4" onplay="resizeAndPlay(this)"></video>
+            <canvas width="150" height="150" class="videoMerge" id="v4Merge"></canvas>
+          </div>
         </div>
       </div>
     </div>
@@ -290,7 +274,7 @@
     <!--/ Abstract. -->
 
     <!-- Paper video. -->
-    <div class="columns is-centered has-text-centered">
+    <!-- <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Video</h2>
         <div class="publication-video">
@@ -298,8 +282,120 @@
                   frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
       </div>
-    </div>
+    </div> -->
     <!--/ Paper video. -->
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Animation Result of Rigging Predicted by Anymate</h2>
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content">
+          <p>
+            (Sample 1)
+          </p>
+          <video id="s1" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos_anymate/all_0.mp4"
+                    type="video/mp4">
+          </video>
+          <p>
+            (Sample 5)
+          </p>
+          <video id="s2" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos_anymate/all_10.mp4"
+                    type="video/mp4">
+          </video>
+          <p>
+            (Sample 9)
+          </p>
+          <video id="s3" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos_anymate/all_8.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="content">
+          <p>
+            (Sample 2)
+          </p>
+          <video id="s4" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos_anymate/all_1.mp4"
+                    type="video/mp4">
+          </video>
+          <p>
+            (Sample 6)
+          </p>
+          <video id="s5" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos_anymate/all_5.mp4"
+                    type="video/mp4">
+          </video>
+          <p>
+            (Sample 10)
+          </p>
+          <video id="s6" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos_anymate/all_9.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="content">
+          <p>
+            (Sample 3)
+          </p>
+          <video id="s7" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos_anymate/all_2.mp4"
+                    type="video/mp4">
+          </video>
+          <p>
+            (Sample 7)
+          </p>
+          <video id="s8" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos_anymate/all_6.mp4"
+                    type="video/mp4">
+          </video>
+          <p>
+            (Sample 11)
+          </p>
+          <video id="s9" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos_anymate/all_4.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      <div class="column">
+        <div class="content">
+          <p>
+            (Sample 4)
+          </p>
+          <video id="s10" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos_anymate/all_3.mp4"
+                    type="video/mp4">
+          </video>
+          <p>
+            (Sample 8)
+          </p>
+          <video id="s11" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos_anymate/all_7.mp4"
+                    type="video/mp4">
+          </video>
+          <!-- <p style="color: transparent;">
+            (Sample 12)
+          </p>
+          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/videos_anymate/all_11.mp4"
+                    type="video/mp4">
+          </video> --->
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
