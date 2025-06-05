@@ -392,9 +392,11 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width"> 
-        <div class="has-text-centered title is-3">Effect of timesteps</div>
+        <div class="has-text-centered title is-3">Generalization to multi-step</div>
         <p>
-          Now, moving the slider changes the range of timesteps at which the intervention is performed in SDXL base. We start from [0, 25], move the left side to [5, 25], [10, 25], [15, 25], [20, 25].
+          Interestingly, <b>our features</b> that we trained on 1-step SDXL Turbo <b>generalize to</b> 4-step SDXL Turbo and even to the multi-step <b>SDXL base model</b> without additional training.
+          Here you can explore the effect of adding the features across different ranges of timesteps. Moving the slider changes the range of timesteps at which the intervention is performed in SDXL base. 
+          We start from <b>[0, 25] and move the left side to [5, 25], [10, 25], [15, 25], [20, 25]</b>.
         </p>
       </div>
     </div>
@@ -481,6 +483,7 @@
         <p>
             down.2.1 and up.0.1 features generate meaningful images even than being turned on during empty-prompt generation. down.2.1
             interventions result in meaningful images, whereas up.0.1 interventions generate texture-like images.
+        
         </p>
       </div>
     </div>
@@ -490,6 +493,7 @@
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container is-max-desktop">
+      <div class="has-text-centered title is-3">Empty-prompt generations as previews</div>
       <div id="results-carousel" class="carousel results-carousel">
         <div class="item item-steve">
           <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
@@ -552,9 +556,13 @@
           </video>
         </div>
       </div>
-      <div class="subtitle has-text-centered">
-        We decomposed the generative process of SDXL Turbo into interpretable features using Sparse Autoencoders. The features are causal and can be manipulated to control the generated images.
-      </div>
+      <!--<div class="subtitle has-text-centered">-->
+      <p>
+        The empty-prompt generations can be used as a visual representation or preview of the features. Here is the brush animation from the beginning with the corresponding preview images. 
+        <a href="https://www.goodfire.ai/blog/painting-with-concepts" target="_blank">Goodfire</a> in their recent blog post used our technique in their 
+        <a href="https://paint.goodfire.ai/umap.html" target="_blank">UMAP</a> visualization, where our zero-shot intervention previews appear when hovering over the points.
+      </p>
+      <!--</div>-->
     </div>
   </div>
 </section>
@@ -633,10 +641,22 @@
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
+    <p>The first version of our paper, which is <b>the first work leveraging SAEs within text-to-image diffusion models</b>.</p>
     <pre><code>@misc{surkov2024unpackingsdxlturbointerpreting,
       title={Unpacking SDXL Turbo: Interpreting Text-to-Image Models with Sparse Autoencoders}, 
       author={Viacheslav Surkov and Chris Wendler and Mikhail Terekhov and Justin Deschenaux and Robert West and Caglar Gulcehre},
       year={2024},
+      eprint={2410.22366},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2410.22366}, 
+}
+</code></pre>
+<p>Updated version of the paper, showcasing multi-step generalization and a few more nice findings that we made along the way.</p>
+    <pre><code>@misc{surkov2025onestepenoughsparseautoencoders,
+      title={One-Step is Enough: Sparse Autoencoders for Text-to-Image Diffusion Models}, 
+      author={Viacheslav Surkov and Chris Wendler and Antonio Mari and Mikhail Terekhov and Justin Deschenaux and Robert West and Caglar Gulcehre and David Bau},
+      year={2025},
       eprint={2410.22366},
       archivePrefix={arXiv},
       primaryClass={cs.LG},
