@@ -159,38 +159,35 @@
 <!-- ──────────────── Dataset & Benchmark ──────────────── -->
 <section id="dataset" class="section is-light">
   <div class="container is-max-desktop">
+
     <h2 class="title is-3">A New Benchmark & Dataset</h2>
 
-    <div class="columns is-vcentered">
-      <!-- TEXT -->
-      <div class="column">
-        <p class="content">
-          The <strong>CuRe Dataset</strong> couples <b>300</b> cultural artifacts from
-          <b>64 regions</b> inside a three-level hierarchy:
-        </p>
-        <ul>
-          <li><code>s</code> — <b>super-category</b> (e.g.&nbsp;Art, Fashion, Food)</li>
-          <li><code>c</code> — <b>category</b> (e.g.&nbsp;Dumpling)</li>
-          <li><code>n</code> — <b>artifact name</b> (e.g.&nbsp;Banku)</li>
-          <li><code>r</code> — <b>region</b> (e.g.&nbsp;Ghana)</li>
-        </ul>
-        <p class="content">
-          This structure lets us ask: “How far down the long tail can a T2I model go
-          <em>and still be faithful</em>?”
-        </p>
-      </div>
+    <!-- FULL-WIDTH FIGURE ABOVE -->
+    <figure class="image mb-5">
+      <img src="./static/images/cure_system_diagram.jpg"
+           alt="Hierarchical view of CuRe artifacts" />
+    </figure>
 
-      <!-- FIGURE -->
-      <div class="column is-one-third">
-        <figure class="image">
-          <img src="./static/images/cure_system_diagram.jpg"
-               alt="Hierarchical view of CuRe artifacts" />
-        </figure>
-      </div>
+    <!-- TEXT CONTENT BELOW -->
+    <div class="content">
+      <p>
+        The <strong>CuRe Dataset</strong> couples <b>300</b> cultural artifacts from
+        <b>64 regions</b> inside a three-level hierarchy:
+      </p>
+      <ul>
+        <li><code>s</code> — <b>super-category</b> (e.g.&nbsp;Art, Fashion, Food)</li>
+        <li><code>c</code> — <b>category</b> (e.g.&nbsp;Dumpling)</li>
+        <li><code>n</code> — <b>artifact name</b> (e.g.&nbsp;Banku)</li>
+        <li><code>r</code> — <b>region</b> (e.g.&nbsp;Ghana)</li>
+      </ul>
+      <p>
+        This structure lets us ask: “How far down the long tail can a T2I model go
+        <em>and still be faithful</em>?”
+      </p>
     </div>
+
   </div>
 </section>
-
 
 <!-- ─────────────────── CuRe Scorers ──────────────────── -->
 <section id="scorers" class="section">
@@ -201,7 +198,7 @@
     <div class="columns is-vcentered mb-6">
       <div class="column is-one-half">
         <figure class="image">
-          <img src="./static/images/scorers_pipeline.png"
+          <img src="./static/images/cure_dataset.jpg"
                alt="CuRe scorer pipeline and user-study overview" />
         </figure>
       </div>
