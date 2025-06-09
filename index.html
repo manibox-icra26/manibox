@@ -175,10 +175,10 @@
         <b>64 regions</b> inside a three-level hierarchy:
       </p>
       <ul>
-        <li><code>s</code> — <b>super-category</b> (e.g.&nbsp;Art, Fashion, Food)</li>
-        <li><code>c</code> — <b>category</b> (e.g.&nbsp;Dumpling)</li>
-        <li><code>n</code> — <b>artifact name</b> (e.g.&nbsp;Banku)</li>
-        <li><code>r</code> — <b>region</b> (e.g.&nbsp;Ghana)</li>
+        <li><code>s</code> - <b>super-category</b> (e.g.&nbsp;Art, Fashion, Food)</li>
+        <li><code>c</code> - <b>category</b> (e.g.&nbsp;Dumpling)</li>
+        <li><code>n</code> - <b>artifact name</b> (e.g.&nbsp;Banku)</li>
+        <li><code>r</code> - <b>region</b> (e.g.&nbsp;Ghana)</li>
       </ul>
       <p>
         This structure lets us ask: “How far down the long tail can a T2I model go
@@ -205,8 +205,8 @@
 
       <div class="column">
         <p class="content">
-          We inject <em>marginal information</em>—gradually adding name (<code>n</code>),
-          region (<code>r</code>), category (<code>c</code>), …—into the prompt and feed
+          We inject <em>marginal information</em> gradually adding name (<code>n</code>),
+          region (<code>r</code>), category (<code>c</code>),into the prompt and feed
           it through a T2I model <code>f<sub>θ</sub></code>.  
           A quantitative scorer <code>φ</code> produces a “rep’ness” report card.
         </p>
@@ -260,7 +260,7 @@
     <h2 class="title is-3">Takeaways</h2>
     <div class="content">
       <ul>
-        <li>Scorers—like T2I systems—<strong>do not work equally well across cultures</strong>.</li>
+        <li>Scorers like T2I systems <strong>do not work equally well across cultures</strong>.</li>
         <li>Our scorer aligns with human ratings <em>without needing ground-truth data</em>.</li>
         <li><strong>Backbone matters</strong>: using CLIP + LAION to judge a model also trained on LAION can inflate scores.</li>
         <li>Observed trade-off between <em>factuality</em> and <em>diversity</em> (cf. Kannen et al., NeurIPS ’24).</li>
