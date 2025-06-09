@@ -160,52 +160,83 @@
 <section id="dataset" class="section is-light">
   <div class="container is-max-desktop">
     <h2 class="title is-3">A New Benchmark & Dataset</h2>
-    <div class="columns is-variable is-6">
+
+    <div class="columns is-vcentered">
+      <!-- TEXT -->
       <div class="column">
         <p class="content">
-          <strong>CuRe Dataset.</strong> 300 cultural artifacts spanning
-          <strong>64 global regions</strong> organised in a novel
-          <em>categorical hierarchy</em> (e.g.\ Art → Pottery → Jebena).
+          The <strong>CuRe Dataset</strong> couples <b>300</b> cultural artifacts from
+          <b>64 regions</b> inside a three-level hierarchy:
         </p>
         <ul>
-          <li>Supports fine-grained evaluation of long-tail cultural concepts.</li>
-          <li>Released with <code>code &amp; prompts</code> for full reproducibility.</li>
+          <li><code>s</code> — <b>super-category</b> (e.g.&nbsp;Art, Fashion, Food)</li>
+          <li><code>c</code> — <b>category</b> (e.g.&nbsp;Dumpling)</li>
+          <li><code>n</code> — <b>artifact name</b> (e.g.&nbsp;Banku)</li>
+          <li><code>r</code> — <b>region</b> (e.g.&nbsp;Ghana)</li>
         </ul>
+        <p class="content">
+          This structure lets us ask: “How far down the long tail can a T2I model go
+          <em>and still be faithful</em>?”
+        </p>
       </div>
-      <div class="column">
+
+      <!-- FIGURE -->
+      <div class="column is-one-third">
         <figure class="image">
-          <img src="./static/images/cure_hierarchy.png"
-               alt="Hierarchical view of CuRe artifacts">
+          <img src="./static/images/dataset_hierarchy.png"
+               alt="Hierarchical view of CuRe artifacts" />
         </figure>
       </div>
     </div>
   </div>
 </section>
 
+
 <!-- ─────────────────── CuRe Scorers ──────────────────── -->
 <section id="scorers" class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3">CuRe Scorers: Measuring Cultural Representativeness</h2>
-    <p class="content">
-      When human judgments split, our three <strong>MIA (Marginal-Information Attribution)</strong>
-      scorers can tell them apart while common baselines cannot:
-    </p>
-    <div class="columns">
-      <div class="column">
-        <h4 class="title is-4 mb-1">1. Perceptual Similarity (<em>φ<sub>PS</sub></em>)</h4>
-        <p>“Which cultural artifact is visually closer to its category?”</p>
+
+    <!-- PIPELINE DIAGRAM -->
+    <div class="columns is-vcentered mb-6">
+      <div class="column is-one-half">
+        <figure class="image">
+          <img src="./static/images/scorers_pipeline.png"
+               alt="CuRe scorer pipeline and user-study overview" />
+        </figure>
       </div>
+
       <div class="column">
-        <h4 class="title is-4 mb-1">2. Image-Text Alignment (<em>φ<sub>ITA</sub></em>)</h4>
-        <p>Does specifying attributes improve cultural representativeness?</p>
+        <p class="content">
+          We inject <em>marginal information</em>—gradually adding name (<code>n</code>),
+          region (<code>r</code>), category (<code>c</code>), …—into the prompt and feed
+          it through a T2I model <code>f<sub>θ</sub></code>.  
+          A quantitative scorer <code>φ</code> produces a “rep’ness” report card.
+        </p>
+        <p class="content">
+          Human raters who self-identify with the culture supply the gold judgment
+          <code>φ<sup>*</sup></code>, letting us see which automatic metrics
+          actually track human perception.
+        </p>
       </div>
-      <div class="column">
-        <h4 class="title is-4 mb-1">3. Diversity (<em>φ<sub>DIV</sub></em>)</h4>
-        <p>Do changed attributes make generations more diverse?</p>
-      </div>
+    </div>
+
+    <!-- METRICS PANEL -->
+    <figure class="image">
+      <img src="./static/images/scorers_metrics.png"
+           alt="Examples of φPS, φITA, φDIV metrics and why baselines fail" />
+    </figure>
+
+    <div class="content mt-4">
+      <ul>
+        <li><b>φ<sub>PS</sub></b> – Perceptual Similarity: visual closeness to its category.</li>
+        <li><b>φ<sub>ITA</sub></b> – Image/Text Alignment: does adding attributes improve rep’ness?</li>
+        <li><b>φ<sub>DIV</sub></b> – Diversity: do attribute changes widen generation diversity?</li>
+      </ul>
     </div>
   </div>
 </section>
+
 
 <!-- ───────────────── Large-Scale User Study ──────────────── -->
 <section id="user-study" class="section is-light">
