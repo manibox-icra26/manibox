@@ -101,7 +101,7 @@
             <div class="publication-links">
               <!-- PDF Link. -->
               <span class="link-block">
-                <a href="./static/paper/CuRe_paper.pdf" class="external-link button is-normal is-rounded is-dark">
+                <a href="./static/pdf/CuRe.pdf" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon"><i class="fas fa-file-pdf"></i></span><span>Paper</span>
                 </a>
               </span>
@@ -125,6 +125,22 @@
   </div>
 </section>
 
+<!-- ───────────────── Motivation / Problem ───────────────── -->
+<section id="motivation" class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">tl;dr</h2>
+    <div class="content">
+      <ul>
+        <li>Cultural Representativeness (CuRe): current text-to-image (T2I) systems <strong>do not represent global cultures equitably</strong>.</li>
+        <li>America & Europe dominate pre-training data (<em>“head”</em>), while the <em>long tail</em> overlaps more with the Global South.</li>
+        <li>We ask: <em>How faithfully can T2I systems generate images for cultural artifacts from the long tail?</em></li>
+        <li>CuRe can be measured by scoring how the T2I system responds to <strong>increasing attribute specification in the text prompt.</strong></li>
+        <li>Get in touch with us to benchmark your text-to-image system!</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <!-- Hero teaser image (replace src with Figure 1 composite) -->
 <section class="hero teaser">
   <div class="container is-max-desktop">
@@ -133,7 +149,7 @@
         <img src="./static/images/image.png" width="1000" height="800" alt="CuRe pottery teaser showing cultural gaps in T2I models">
       </figure>
       <h2 class="subtitle has-text-centered">
-        CuRe reveals how state‑of‑the‑art text‑to‑image systems under‑represent the cultural <b>long tail</b>.
+        {TODO: left align.} CuRe reveals how state‑of‑the‑art text‑to‑image systems perform well on concepts widely seen during pretraining (the "head" of the distribution) like (a) <i>ceramic diyas</i> from India but tend to misrepresent less-seen artifacts from the cultural "long-tail" such as (b) <i>jebena</i> from Ethiopia or (c) <i>amphora of Hermonax</i> from Greece, even when additional attributes are provided in the text prompt.
       </h2>
     </div>
   </div>
@@ -147,8 +163,8 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
-          <p>Popular text‑to‑image (T2I) systems are trained on web‑scale data that is heavily Amero and Euro‑centric, leading to hallucinations and misrepresentation for cultures in the Global South. We introduce <b>CuRe</b>, a benchmarking suite that diagnoses these cultural gaps.</p>
-          <p>CuRe couples a <b>hierarchical dataset</b> of <b>300</b> cultural artifacts across <b>64</b> global regions with <b>marginal‑information attribution scorers</b> that better match human judgments of cultural representativeness, image‑text alignment and diversity. Our analysis shows that mainstream T2I systems perform well on concepts widely seen during pretraining (the "head" of the distribution) like (a) <i>ceramic diyas</i> from India but fail on long‑tail artifacts such as (b) <i>jebena</i> from Ethiopia or (c) <i>amphora of Hermonax</i> from Greece, even when additional attributes are provided in the text prompt.</p>
+          <p>Popular text‑to‑image (T2I) systems are trained on web‑scale data that is heavily Amero and Euro‑centric, leading to hallucinations and misrepresentation for cultures in the Global South. We introduce <b>CuRe</b>, a benchmarking and scoring suite that diagnoses these cultural gaps.</p>
+          <p>CuRe couples a <b>hierarchical dataset</b> of <b>300</b> cultural artifacts across <b>64</b> global regions with <b>marginal information attribution (MIA) scorers</b> that better match human judgments of cultural representativeness, image‑text alignment and diversity. Via a large scale user study with more than 2700 participants, we show that our MIA scorers <strong>correlate more positively to real human judments than baselines</strong>.</p>
         </div>
       </div>
     </div>
@@ -157,19 +173,6 @@
   </div>
 </section>
 
-<!-- ───────────────── Motivation / Problem ───────────────── -->
-<section id="motivation" class="section">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3">Why CuRe?</h2>
-    <div class="content">
-      <ul>
-        <li>Current text-to-image (T2I) systems <strong>do not represent global cultures equitably</strong>.</li>
-        <li>America + Europe dominate pre-training data (<em>“head”</em>), while the Global South lives in the <em>long tail</em>.</li>
-        <li>CuRe asks: <em>How faithfully can T2I models generate images for those under-represented cultures?</em></li>
-      </ul>
-    </div>
-  </div>
-</section>
 
 <!-- ──────────────── Dataset & Benchmark ──────────────── -->
 <section id="dataset" class="section is-light">
@@ -186,8 +189,8 @@
     <!-- TEXT CONTENT BELOW -->
     <div class="content">
       <p>
-        The <strong>CuRe Dataset</strong> couples <b>300</b> cultural artifacts from
-        <b>64 regions</b> inside a three-level hierarchy:
+        We construct the <strong>CuRe dataset</strong> with <b>300</b> cultural artifacts from
+        <b>64 global regions</b>, each described by the below attributes:
       </p>
       <ul>
         <li><code>s</code> - <b>super-category</b> (e.g.&nbsp;Art, Fashion, Food)</li>
@@ -196,7 +199,7 @@
         <li><code>r</code> - <b>region</b> (e.g.&nbsp;Ghana)</li>
       </ul>
       <p>
-        This structure lets us ask: “How far down the long tail can a T2I model go
+        We organize the CuRe dataset in a three level hierarchy, i.e. <code>s → c → n, r</code>. This structure lets us ask: “How far down the long tail can a T2I model go
         <em>and still be faithful</em>?”
       </p>
     </div>
@@ -220,7 +223,7 @@
 
       <div class="column">
         <p class="content">
-          We inject <em>marginal information</em> gradually adding name (<code>n</code>),
+          {TODO: Swap these two figures. First show dataset fig and talk about it, then show system diagram and talk about it} We inject <em>marginal information</em> gradually adding name (<code>n</code>),
           region (<code>r</code>), category (<code>c</code>),into the prompt and feed
           it through a T2I model <code>f<sub>θ</sub></code>.  
           A quantitative scorer <code>φ</code> produces a “rep’ness” report card.
@@ -241,9 +244,10 @@
 
     <div class="content mt-4">
       <ul>
-        <li><b>φ<sub>PS</sub></b> – Perceptual Similarity: visual closeness to its category.</li>
-        <li><b>φ<sub>ITA</sub></b> – Image/Text Alignment: does adding attributes improve rep’ness?</li>
-        <li><b>φ<sub>DIV</sub></b> – Diversity: do attribute changes widen generation diversity?</li>
+        {TODO: We need to make better use of whitespace in fig above. Each scorer figure needs to be much bigger} 
+        <li><b>φ<sub>PS</sub></b> – Perceptual Similarity: visual closeness of an artifact T2I image (Banku) to its category T2I image (Dumpling)</li>
+        <li><b>φ<sub>ITA</sub></b> – Image-Text Alignment: textual closeness of an artifact T2I image to a change in attributes specified through text</li>
+        <li><b>φ<sub>DIV</sub></b> – Diversity: do attribute changes (Banku → Banku, a type of dumpling) increase generation diversity?</li>
       </ul>
     </div>
   </div>
@@ -255,16 +259,14 @@
   <div class="container is-max-desktop">
     <h2 class="title is-3">Large-Scale User Study</h2>
     <ul class="content">
-      <li>Models: Stable Diffusion 1.5 & 3.5, FLUX 1.<small>dev</small></li>
-      <li>3 crowd-workers <em>per country</em> who identify with its culture.</li>
-      <li>Ratings (1 – 5):<br>
+      <li>For all 300 cultural artifacts from our dataset, we query three crowd-workers <em>per country</em> who identify with its culture to rate from 1 to 5:<br>
         <ol style="margin-left:1.5em">
           <li><strong>Cultural Representativeness</strong> – “Could this image plausibly be found in your country?”</li>
-          <li><strong>Perceptual Similarity</strong> – similarity to four real references.</li>
-          <li><strong>Ground-Truth Likelihood</strong> – correctness of the artifact label.</li>
+          <li><strong>Perceptual Similarity</strong> – visual similarity to four real reference images from Wikimedia.</li>
+          <li><strong>Ground-Truth Likelihood</strong> – correctness of the image's label (e.g. "Is this an image of spaghetti?").</li>
         </ol>
       </li>
-      <li>Our MIA scorers show the strongest correlation with real human judgments.</li>
+      <li>On Stable Diffusion 1.5 & 3.5, FLUX 1.<small>[dev]</small>, our MIA scorers show strong correlations with real human judgments (gold scores).</li>
     </ul>
   </div>
 </section>
@@ -380,12 +382,12 @@
     <h2 class="title is-3">Takeaways</h2>
     <div class="content">
       <ul>
-        <li>Scorers like T2I systems <strong>do not work equally well across cultures</strong>.</li>
-        <li>Our scorer aligns with human ratings <em>without needing ground-truth data</em>.</li>
-        <li><strong>Backbone matters</strong>: using CLIP + LAION to judge a model also trained on LAION can inflate scores.</li>
-        <li>Observed trade-off between <em>factuality</em> and <em>diversity</em> (cf. Kannen et al., NeurIPS ’24).</li>
+        <li>Quantitative scorers, like T2I systems, <strong>do not work equally well across cultures</strong>.</li>
+        <li>Our ITA scorer shows strong alignment with human judgments <strong>without needing any ground-truth data</strong>.</li>
+        <li><strong>Backbone matters</strong>: did you use CLIP trained on LAION to judge a model also trained on LAION? This will mislead you!</li>
+        <li>Observed trade-off between <em>factuality</em> and <em>diversity</em> (agrees with <a href="https://arxiv.org/abs/2407.06863">Kannen et al., NeurIPS ’24</a>).</li>
       </ul>
-      <p>See the paper for full benchmark tables, MLLM analysis, and exhaustive study details.</p>
+      <p>See the paper for a detailed description and comparison of each scorer with real human judments, analyzing Gemini 2.0 Flash, and exhaustive user study details.</p>
     </div>
   </div>
 </section>
@@ -393,6 +395,7 @@
 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
+{TODO: update this once arxiv is out.}
     <h2 class="title">BibTeX</h2>
     <pre><code>@article{rege2024cure,
   author    = {Rege, Aniket and Nie, Zinnia and Ramesh, Mahesh and Raskar, Unmesh and Yu, Zhuoran and Kusupati, Aditya and Lee, Yong~Jae and Vinayak, Ramya~Korlakai},
