@@ -217,38 +217,37 @@
     <h2 class="title is-3">CuRe Scorers: Measuring Cultural Representativeness</h2>
 
     <!-- PIPELINE DIAGRAM -->
-    <div class="columns is-vcentered mb-6">
-      <div class="column is-one-half">
+    <div class="columns is-centered mb-6">
+      <div class="column is-10 has-text-centered">
         <figure class="image">
           <img src="./static/images/cure_system_diagram.jpg"
                alt="Hierarchical view of CuRe artifacts" />
         </figure>
       </div>
+    </div>
 
-      <div class="column">
-        <p class="content">
-          We inject <em>marginal information</em> gradually adding name (<code>n</code>),
-          region (<code>r</code>), category (<code>c</code>),into the prompt and feed
-          it through a T2I model <code>f<sub>θ</sub></code>.  
-          A quantitative scorer <code>φ</code> produces a "rep'ness" report card.
-        </p>
-        <p class="content">
-          Human raters who self-identify with the culture supply the gold judgment
-          <code>φ<sup>*</sup></code>, letting us see which automatic metrics
-          actually track human perception.
-        </p>
-      </div>
+    <div class="content">
+      <p>
+        We inject <em>marginal information</em> gradually adding name (<code>n</code>),
+        region (<code>r</code>), category (<code>c</code>),into the prompt and feed
+        it through a T2I model <code>f<sub>θ</sub></code>.  
+        A quantitative scorer <code>φ</code> produces a "rep'ness" report card.
+      </p>
+      <p>
+        Human raters who self-identify with the culture supply the gold judgment
+        <code>φ<sup>*</sup></code>, letting us see which automatic metrics
+        actually track human perception.
+      </p>
     </div>
 
     <!-- METRICS PANEL -->
     <figure class="image">
-      <img src="./static/images/cure-image3.jpg"
+      <img src="./static/images/Cure-image3.png"
            alt="Examples of φPS, φITA, φDIV metrics and why baselines fail" />
     </figure>
 
     <div class="content mt-4">
       <ul>
-        {TODO: We need to make better use of whitespace in fig above. Each scorer figure needs to be much bigger} 
         <li><b>φ<sub>PS</sub></b> – Perceptual Similarity: visual closeness of an artifact T2I image (Banku) to its category T2I image (Dumpling)</li>
         <li><b>φ<sub>ITA</sub></b> – Image-Text Alignment: textual closeness of an artifact T2I image to a change in attributes specified through text</li>
         <li><b>φ<sub>DIV</sub></b> – Diversity: do attribute changes (Banku → Banku, a type of dumpling) increase generation diversity?</li>
