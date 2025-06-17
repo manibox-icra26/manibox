@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="./static/images/favicon.svg">
+  <link rel="icon" href="./static/images/cure_favicon.png">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
@@ -81,7 +81,7 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">CuRe: Cultural Gaps in the Long‑Tail of Text‑to‑Image Systems</h1>
+          <h1 class="title is-1 publication-title">⚕️ CuRe: Cultural Gaps in the Long‑Tail of Text‑to‑Image Systems</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block"><a href="https://aniketrege.github.io">Aniket Rege</a><sup>*1</sup>,</span>
             <span class="author-block"><a href="https://www.linkedin.com/in/zinnia-nie-468850224/">Zinnia Nie</a><sup>1</sup>,</span> 
@@ -107,14 +107,26 @@
               </span>
               <!-- arXiv Link. -->
               <span class="link-block">
-                <a href="https://arxiv.org/abs/2404.xxxxx" class="external-link button is-normal is-rounded is-dark">
+                <a href="https://arxiv.org/abs/2506.08071" class="external-link button is-normal is-rounded is-dark">
                   <span class="icon"><i class="ai ai-arxiv"></i></span><span>arXiv</span>
                 </a>
               </span>
               <!-- Code Link. -->
               <span class="link-block">
-                <a href="https://github.com/aniketrege/cure" class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon"><i class="fab fa-github"></i></span><span>Code & Dataset</span>
+                <a href="https://github.com/aniketrege/cure-bench" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-github"></i></span><span>Code</span>
+                </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/datasets/aniketr/cure" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-database"></i></span><span>Dataset</span>
+                </a>
+              </span>
+              <!-- Tweet Thread. -->
+              <span class="link-block">
+                <a href="https://x.com/wregss/status/1932784652810428671" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-retweet"></i></span><span>Tweet</span>
                 </a>
               </span>
             </div>
@@ -132,7 +144,7 @@
     <div class="content">
       <ul>
         <li>Cultural Representativeness (CuRe): current text-to-image (T2I) systems <strong>do not represent global cultures equitably</strong>.</li>
-        <li>America & Europe dominate pre-training data (<em>“head”</em>), while the <em>long tail</em> overlaps more with the Global South.</li>
+        <li>America & Europe dominate pre-training data (<em>"head"</em>), while the <em>long tail</em> overlaps more with the Global South.</li>
         <li>We ask: <em>How faithfully can T2I systems generate images for cultural artifacts from the long tail?</em></li>
         <li>CuRe can be measured by scoring how the T2I system responds to <strong>increasing attribute specification in the text prompt.</strong></li>
         <li>Get in touch with us to benchmark your text-to-image system!</li>
@@ -141,15 +153,15 @@
   </div>
 </section>
 
-<!-- Hero teaser image (replace src with Figure 1 composite) -->
+<!-- Hero teaser image (replace src with Figure 1 composite) -->
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
       <figure>
         <img src="./static/images/image.png" width="1000" height="800" alt="CuRe pottery teaser showing cultural gaps in T2I models">
       </figure>
-      <h2 class="subtitle has-text-centered">
-        {TODO: left align.} CuRe reveals how state‑of‑the‑art text‑to‑image systems perform well on concepts widely seen during pretraining (the "head" of the distribution) like (a) <i>ceramic diyas</i> from India but tend to misrepresent less-seen artifacts from the cultural "long-tail" such as (b) <i>jebena</i> from Ethiopia or (c) <i>amphora of Hermonax</i> from Greece, even when additional attributes are provided in the text prompt.
+      <h2 class="subtitle has-text-left">
+        CuRe reveals how state‑of‑the‑art text‑to‑image systems perform well on concepts widely seen during pretraining (the "head" of the distribution) like (a) <i>ceramic diyas</i> from India but tend to misrepresent less-seen artifacts from the cultural "long-tail" such as (b) <i>jebena</i> from Ethiopia or (c) <i>amphora of Hermonax</i> from Greece, even when additional attributes are provided in the text prompt.
       </h2>
     </div>
   </div>
@@ -180,13 +192,17 @@
 
     <h2 class="title is-3">A New Benchmark & Dataset</h2>
 
-    <!-- FULL-WIDTH FIGURE ABOVE -->
-    <figure class="image mb-5">
-      <img src="./static/images/cure_system_diagram.jpg"
-           alt="Hierarchical view of CuRe artifacts" />
-    </figure>
+    <!-- FIGURE SPANNING TWO COLUMNS -->
+    <div class="columns is-centered mb-5">
+      <div class="column is-10">
+        <figure class="image">
+          <img src="./static/images/cure_dataset.jpg"
+               alt="CuRe scorer pipeline and user-study overview" />
+        </figure>
+      </div>
+    </div>
 
-    <!-- TEXT CONTENT BELOW -->
+    <!-- CAPTION AND TEXT CONTENT BELOW -->
     <div class="content">
       <p>
         We construct the <strong>CuRe dataset</strong> with <b>300</b> cultural artifacts from
@@ -199,8 +215,8 @@
         <li><code>r</code> - <b>region</b> (e.g.&nbsp;Ghana)</li>
       </ul>
       <p>
-        We organize the CuRe dataset in a three level hierarchy, i.e. <code>s → c → n, r</code>. This structure lets us ask: “How far down the long tail can a T2I model go
-        <em>and still be faithful</em>?”
+        We organize the CuRe dataset in a three level hierarchy, i.e. <code>s → c → n, r</code>. This structure lets us ask: "How far down the long tail can a T2I model go
+        <em>and still be faithful</em>"?
       </p>
     </div>
 
@@ -213,38 +229,37 @@
     <h2 class="title is-3">CuRe Scorers: Measuring Cultural Representativeness</h2>
 
     <!-- PIPELINE DIAGRAM -->
-    <div class="columns is-vcentered mb-6">
-      <div class="column is-one-half">
+    <div class="columns is-centered mb-6">
+      <div class="column is-10 has-text-centered">
         <figure class="image">
-          <img src="./static/images/cure_dataset.jpg"
-               alt="CuRe scorer pipeline and user-study overview" />
+          <img src="./static/images/cure_system_diagram.jpg"
+               alt="Hierarchical view of CuRe artifacts" />
         </figure>
       </div>
+    </div>
 
-      <div class="column">
-        <p class="content">
-          {TODO: Swap these two figures. First show dataset fig and talk about it, then show system diagram and talk about it} We inject <em>marginal information</em> gradually adding name (<code>n</code>),
-          region (<code>r</code>), category (<code>c</code>),into the prompt and feed
-          it through a T2I model <code>f<sub>θ</sub></code>.  
-          A quantitative scorer <code>φ</code> produces a “rep’ness” report card.
-        </p>
-        <p class="content">
-          Human raters who self-identify with the culture supply the gold judgment
-          <code>φ<sup>*</sup></code>, letting us see which automatic metrics
-          actually track human perception.
-        </p>
-      </div>
+    <div class="content">
+      <p>
+        We inject <em>marginal information</em> gradually adding name (<code>n</code>),
+        region (<code>r</code>), category (<code>c</code>),into the prompt and feed
+        it through a T2I model <code>f<sub>θ</sub></code>.  
+        A quantitative scorer <code>φ</code> produces a "rep'ness" report card.
+      </p>
+      <p>
+        Human raters who self-identify with the culture supply the gold judgment
+        <code>φ<sup>*</sup></code>, letting us see which automatic metrics
+        actually track human perception.
+      </p>
     </div>
 
     <!-- METRICS PANEL -->
     <figure class="image">
-      <img src="./static/images/cure-image3.jpg"
+      <img src="./static/images/Cure-image3.png"
            alt="Examples of φPS, φITA, φDIV metrics and why baselines fail" />
     </figure>
 
     <div class="content mt-4">
       <ul>
-        {TODO: We need to make better use of whitespace in fig above. Each scorer figure needs to be much bigger} 
         <li><b>φ<sub>PS</sub></b> – Perceptual Similarity: visual closeness of an artifact T2I image (Banku) to its category T2I image (Dumpling)</li>
         <li><b>φ<sub>ITA</sub></b> – Image-Text Alignment: textual closeness of an artifact T2I image to a change in attributes specified through text</li>
         <li><b>φ<sub>DIV</sub></b> – Diversity: do attribute changes (Banku → Banku, a type of dumpling) increase generation diversity?</li>
@@ -261,7 +276,7 @@
     <ul class="content">
       <li>For all 300 cultural artifacts from our dataset, we query three crowd-workers <em>per country</em> who identify with its culture to rate from 1 to 5:<br>
         <ol style="margin-left:1.5em">
-          <li><strong>Cultural Representativeness</strong> – “Could this image plausibly be found in your country?”</li>
+          <li><strong>Cultural Representativeness</strong> – "Could this image plausibly be found in your country?"</li>
           <li><strong>Perceptual Similarity</strong> – visual similarity to four real reference images from Wikimedia.</li>
           <li><strong>Ground-Truth Likelihood</strong> – correctness of the image's label (e.g. "Is this an image of spaghetti?").</li>
         </ol>
@@ -385,7 +400,7 @@
         <li>Quantitative scorers, like T2I systems, <strong>do not work equally well across cultures</strong>.</li>
         <li>Our ITA scorer shows strong alignment with human judgments <strong>without needing any ground-truth data</strong>.</li>
         <li><strong>Backbone matters</strong>: did you use CLIP trained on LAION to judge a model also trained on LAION? This will mislead you!</li>
-        <li>Observed trade-off between <em>factuality</em> and <em>diversity</em> (agrees with <a href="https://arxiv.org/abs/2407.06863">Kannen et al., NeurIPS ’24</a>).</li>
+        <li>Observed trade-off between <em>factuality</em> and <em>diversity</em> (agrees with <a href="https://arxiv.org/abs/2407.06863">Kannen et al., NeurIPS '24</a>).</li>
       </ul>
       <p>See the paper for a detailed description and comparison of each scorer with real human judments, analyzing Gemini 2.0 Flash, and exhaustive user study details.</p>
     </div>
@@ -395,13 +410,12 @@
 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
-{TODO: update this once arxiv is out.}
     <h2 class="title">BibTeX</h2>
-    <pre><code>@article{rege2024cure,
+    <pre><code>@article{rege2025cure,
   author    = {Rege, Aniket and Nie, Zinnia and Ramesh, Mahesh and Raskar, Unmesh and Yu, Zhuoran and Kusupati, Aditya and Lee, Yong~Jae and Vinayak, Ramya~Korlakai},
   title     = {CuRe: Cultural Gaps in the Long‑Tail of Text‑to‑Image Models},
-  journal   = {arXiv preprint arXiv:2404.xxxxx},
-  year      = {2024},
+  journal   = {arXiv preprint arXiv:2506.08071},
+  year      = {2025},
   url       = {https://aniketrege.github.io/cure}
 }</code></pre>
   </div>
