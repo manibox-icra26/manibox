@@ -162,6 +162,14 @@
                   </span>
                   <span>Data</span>
                   </a>
+              <span class="link block">
+                <a href=" "
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Complete Robot Assembly Manual</span>
+                  </a>
             </div>
 
           </div>
@@ -184,11 +192,11 @@
       <img src="./static/images/ticklebot.png" alt="TickleBot Logo" width="500" height="500">
       </h2>
       <h2 class="subtitle has-text-centered">
-        ROS2–AI Integrated Dual-Arm Control with SmolVLA
+        ROS2–AI Integrated Dual-Arm Control with various robot models for Physical AI
       </h2>
       <div class="content has-text-justified">
         - TickleBot employs two low-cost SO-100 open-source robotic arms integrated 
-        through ROS2 middleware and the SmolVLA vision-language-action model.
+        through ROS2 middleware and various robot models for Physical AI, such as SmolVLA, ACT policy, and NoMaD.
       </div>
       <div class="content has-text-justified">
         - This enables precise manipulation tasks such as folding and sorting laundry, 
@@ -212,10 +220,10 @@
       <img src="./static/images/ticklebot.png" alt="TickleBot Logo" width="500" height="500">
       </h2>
       <h2 class="subtitle has-text-centered">
-        NoMaD-Based Autonomous Navigation and Task Execution
+        NoMaD-Based Autonomous Navigation and exploration with topomap generation
       </h2>      
       <div class="content has-text-justified">
-        - The mobile base of TickleBot leverages the NoMaD model 
+        - The mobile base of TickleBot leverages the NoMaD model
         to achieve vision-based navigation using only RGB cameras.
       </div>
             <div class="content has-text-justified">
@@ -296,7 +304,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            This project introduces TickleBot, a low-cost open-source robotic research platform that lowers the entry barrier to humanoid robotics for students and researchers.
+            This project introduces TickleBot, a low-cost open-source robotic research platform that lowers the entry barrier to Physical AI research for students and researchers.
           </p>
           <p>
             Recent advances in Physical AI have highlighted the importance of foundation models for robotics, 
@@ -304,6 +312,7 @@
             continue to hinder progress and scalability. In this work, we present TickleBot, a low-cost,
             open-source robotic research platform designed to lower the entry barrier for undergraduate students and researchers. 
             Built at approximately USD 725, TickleBot integrates the SO-100 open-source robotic arm with a ROS2-based middleware, enabling precise manipulation and mobility without requiring a physical twin. By incorporating the NoMaD model for mobile base navigation and SmolVLA for upper-body control, the platform supports AI-driven teleoperation and task execution using only RGB camera inputs.
+            Owing to the aforementioned characteristics, Ticklebot can attract a large pool of researchers, supporting high-quality teleoperation data collection and robot model evaluation, thereby contributing to the scaling of robot foundation models.
           </p>
           <p>
             TickleBot is designed not only as a research tool 
@@ -445,7 +454,7 @@
         <h3 class="title is-4">Coding & ROS2 Integration</h3>
         <div class="content has-text-justified">
           <p>
-            On a laptop, ROS2 nodes and the SmolVLA model are executed, 
+            On Jetson Orin nano(Jetpack 6.2.1), ROS2 nodes and the robot action model such as SmolVLA, ACT policy are executed, 
             and the robotic arm performs basic motion tests to verify integration.
           </p>
         </div>
@@ -470,7 +479,7 @@
         <h3 class="title is-4">Hands-on Learning</h3>
         <div class="content has-text-justified">
           <p>
-            Students directly input commands or add new datasets, 
+            Students directly input commands or add new datasets, via teleoperation system using joystick and robopilot handles.
             enabling the robotic arm to grasp and stack blocks as a practical learning exercise.
           </p>
         </div>
@@ -482,7 +491,7 @@
         <h3 class="title is-4">Research Extension</h3>
         <div class="content has-text-justified">
           <p>
-            The NoMaD-based mobile base navigates to a new workspace, where the robotic arm resumes manipulation tasks, 
+            The NoMaD-based mobile base navigates to a new workspace(based on user input image) where the robotic arm resumes manipulation tasks, 
             demonstrating scalability for advanced research.
           </p>
         </div>
@@ -505,13 +514,13 @@
             <a href="https://general-navigation-models.github.io/">NoMaD: Navigation with Multimodal Diffusion</a> A vision-based navigation model that enables robots to reach target locations using only RGB inputs.
           </p>
           <p>
-            <a href="https://huggingface.co/docs/lerobot/index">LeRobot</a> An open-source library for robot learning that provides datasets, models, and training utilities for scalable robotic research.
+            <a href="https://huggingface.co/docs/lerobot/index">LeRobot</a>  An open-source library for robot learning that provides datasets, models, and training utilities for scalable robotic research.
           </p>
           <p>
-            <a href="https://huggingface.co/blog/smolvla">SmolVLA</a> A vision-based navigation model that enables robots to reach target locations using only RGB inputs.
+            <a href="https://huggingface.co/blog/smolvla">SmolVLA</a>  A vision-based navigation model that enables robots to reach target locations using only RGB inputs.
           </p>
            <p>
-            <a href="https://mobile-aloha.github.io/">Mobile ALOHA</a>A low-cost mobile humanoid platform combining dual arms with a wheeled base, demonstrating household task automation.
+            <a href="https://mobile-aloha.github.io/">Mobile ALOHA</a>  A low-cost mobile humanoid platform combining dual arms with a wheeled base, demonstrating household task automation.
           </p>
         </div>
       </div>
